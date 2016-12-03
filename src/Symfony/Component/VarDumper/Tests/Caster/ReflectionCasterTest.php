@@ -147,6 +147,10 @@ EOTXT
      */
     public function testGenerator()
     {
+        if (0 != ini_get('xdebug.overload_var_dump')) {
+            $this->markTestSkipped('Xdebug var_dump overloading fails this test');
+        }
+
         $g = new GeneratorDemo();
         $g = $g->baz();
         $r = new \ReflectionGenerator($g);
